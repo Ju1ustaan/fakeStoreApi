@@ -34,3 +34,9 @@ html, body {
 .cart__sum{
   max-width: 160px;
 }
+.main__list li{
+  text-transform: capitalize;
+}
+.active{
+  color: #3b82f6;
+}

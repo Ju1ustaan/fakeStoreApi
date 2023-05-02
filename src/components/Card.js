@@ -13,8 +13,7 @@ const Card = ({ getProduct }) => {
 
   return (
    <>
-    {
-      getProduct.map((getProduct) => (
+  
         <article className="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 flex flex-col justify-between ">
 
       <div className="card__img  overflow-hidden">
@@ -39,8 +38,7 @@ const Card = ({ getProduct }) => {
       </div>
 
     </article>
-      ))
-    }
+    
    </>
   )
 }
