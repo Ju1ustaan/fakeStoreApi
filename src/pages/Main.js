@@ -3,74 +3,68 @@ import axios from 'axios'
 import Card from '../components/Card'
 
 const cats = [
-  { "name": "men's clothing",
+  {
+    "name": "men's clothing",
     "title": "Мужская одежда"
   },
-  { "name": "women's clothing",
+  {
+    "name": "women's clothing",
     "title": "Женская одежда"
   },
-  { "name": "electronics",
+  {
+    "name": "electronics",
     "title": "Электроника"
   },
-  { "name": "jewelery",
+  {
+    "name": "jewelery",
     "title": "Ювелирные изделия"
   }
 ]
 
 const Main = () => {
-const [activeCategory, setActiveCategory] = useState('')
-const [getProduct, setGetProduct] = useState([])
+  const [activeCategory, setActiveCategory] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [getProduct, setGetProduct] = useState([])
 
-useEffect(() => {
+  useEffect(() => {
+    setIsLoading(true)
     const getData = async () => {
-        const { data } = await axios(`https://fakestoreapi.com/products/${activeCategory ? `category/${activeCategory}`: ''}`)
-        setGetProduct(data)
+      const { data } = await axios(`https://fakestoreapi.com/products/${activeCategory ? `category/${activeCategory}` : ''}`)
+      setGetProduct(data)
     }
-    getData()
-}, [activeCategory])
-
-
-// фильтрация по категориям при onClick первый вариант (ФИЛЬТРАЦИЯ КУРИЛЬЩИКА)
-// const [filterData, setFilterData] = useState(getProduct)
-// const handleOnRemove = (item) => {
-//     if (getProduct.length !== filterData.length) {
-//         setFilterData(getProduct)
-//     } else {
-//         const removeItemFromList = (item) => {
-//             const newDataSet = filterData.filter((it) => {
-//                 return it.category === item
-//             })
-//             setFilterData(newDataSet)
-//         }
-//         removeItemFromList(item)
-//     }
-// }
-// const handleOnRemoveAll = () => {
-//   setFilterData(getProduct)
-// }
-
+    getData().finally(() => setIsLoading(false))
+    
+  }, [activeCategory])
+  
+  // console.log(getProduct);
   return (
-    <section className="container mx-auto p-5 bg-gray-100 pt-32">
+    <section className="container mx-auto min-h-screen p-5 bg-gray-100 pt-32">
       <h1 className="mb-10 text-2xl">Главная</h1>
 
-        <ul className='flex main__list'>
-          {
-            cats.map((obj) => <li onClick={() => setActiveCategory(obj.name)} className={activeCategory === obj.name ? "active mr-5":"mr-5 hover:text-blue-600 hover:shadow-inner cursor-pointer"} key={obj.name}>{obj.title}</li> )
-          }
-        </ul>
-  
-        <div className="mx-auto grid max-w-6xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <ul className='flex main__list'>
+        {
+          cats.map((obj) => <li onClick={() => setActiveCategory(obj.name)} className={activeCategory === obj.name ? "active mr-5 font-extrabold" : "mr-5 hover:text-blue-600 hover:shadow-inner cursor-pointer"} key={obj.name}>{obj.title}</li>)
+        }
+      </ul>
+
+      <div className="mx-auto grid max-w-6xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
 
-          {
+        {
+          isLoading ? (
+            <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
+              <div className="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-4 h-24 w-24"></div>
+            </div>
+          ) : (
             getProduct.map((el) => (
-            <Card  key={el.id} getProduct={el} />
+              <Card key={el.id} getProduct={el} />
             ))
-          }
+          )
+        }
 
 
 
-        </div>
+      </div>
 
     </section>
   )

@@ -6,7 +6,7 @@ const Contact = () => {
         <div className="container mx-auto p-5  bg-gray-100 flex flex-col justify-center items-center h-full">
             <h2 className="mt-8 md:mt-12 text-3xl lg:text-4xl font-semibold leading-10 text-center text-gray-800 text-center md:w-9/12 lg:w-7/12">Добро подаложвать, на мою работу с React и Redux!</h2>
             <ul>
-                <li className='list-disc text-center list-inside lg:w-7/12 mx-auto mt-10'>Фильтрация на <strong><em>главной</em></strong> работает не корректно</li>
+                <li className='text-5xl list-disc text-center list-inside lg:w-7/12 mx-auto mt-10'> &#129304;</li>
                 <li className='list-disc text-center list-inside lg:w-7/12 mx-auto '>Фильтрация в <strong><em>корзине</em></strong> не работает совсем (то есть, если выбрат на главной странице один товар дважды, то в корзине будет два одинаковых товара)</li>
                 <li className='list-disc text-center list-inside lg:w-7/12 mx-auto '>В корзине <strong><em>счетчик count</em></strong> работает не корректно (когда нажимаю на количество товара увеличивается или уменьшается количество всех товаров)</li>
                 <li className='list-disc text-center list-inside lg:w-7/12 mx-auto '>первое</li>

@@ -3,14 +3,6 @@ import Basket from "../components/Basket";
 
 const Cart = () => {
     const cart = useSelector(state => state.cart)
-
-    // const newCart = cart.filter((el) => {
-    //     return el.id !== cart.indexOf(el.id)
-    //     // console.log(cart.lastIndexOf(el.id));
-    // })
-
-    console.log(cart);
-    // console.log(newCart);
     return (
         <div className="container mx-auto p-5 bg-gray-100 pt-32">
             <h1 className="mb-10 text-2xl ">Корзина</h1>
